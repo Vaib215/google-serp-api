@@ -1,8 +1,0 @@
-{
-  "scripts": {
-    "start": "bun i && bun run http.ts"
-  },
-  "dependencies": {
-    "googlethis": "^1.8.0"
-  }
-}
