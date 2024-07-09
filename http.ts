@@ -27,13 +27,14 @@ function filterResponse(response) {
 }
 
 Bun.serve({
-  port: 3000,
+  port: process.env.PORT || 3000,
   async fetch(request) {
     const url = new URL(request.url);
     const searchQuery = url.searchParams.get("q");
     if (!searchQuery) {
       return new Response(JSON.stringify({ error: "No query provided" }), {
         headers: { "Content-Type": "application/json" },
+        status: 400,
       });
     }
 
@@ -45,6 +46,7 @@ Bun.serve({
     } catch (error) {
       return new Response(JSON.stringify({ error: error.message }), {
         headers: { "Content-Type": "application/json" },
+        status: 500,
       });
     }
   },
