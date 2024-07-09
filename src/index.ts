@@ -29,6 +29,10 @@ function filterResponse(response: any) {
   return filteredResponse;
 }
 
+app.get("/health", (c) => {
+  c.text("OK");
+});
+
 app.get("/", async (c) => {
   const searchQuery = c.req.query("q");
   if (!searchQuery) {
@@ -42,10 +46,6 @@ app.get("/", async (c) => {
   } catch (error: any) {
     return c.json({ error: error.message }, 500);
   }
-});
-
-app.get("/health", (c) => {
-  c.text("OK");
 });
 
 export default app;
